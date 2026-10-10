@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inscripción · Curso de Vacaciones V.I.V.A. Kids</title>
+<style>
+  :root{
+    --bg:#fff7ec; --card:#ffffff; --ink:#2b2340; --muted:#6d6585;
+    --brand:#ff7a2f; --brand-d:#e5611a; --accent:#4b3bd1; --ok:#1f9d55; --err:#d93a3a;
+    --line:#eadfce;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+  .wrap{max-width:560px;margin:0 auto;padding:16px 16px 40px}
+  header{text-align:center;padding:24px 8px 8px}
+  .nuri{font-size:54px;line-height:1}
+  h1{font-size:1.5rem;margin:8px 0 4px;color:var(--accent)}
+  .sub{margin:0;color:var(--muted);font-size:.95rem}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0 4px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:.8rem;color:var(--ink)}
+  form{background:var(--card);border-radius:20px;padding:20px;margin-top:14px;box-shadow:0 6px 24px rgba(75,59,209,.08)}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-d);margin:6px 0 10px}
+  label{display:block;font-weight:600;font-size:.92rem;margin:14px 0 6px}
+  .hint{font-weight:400;color:var(--muted);font-size:.8rem}
+  input[type=text],input[type=tel],input[type=number],input[type=date]{
+    width:100%;padding:13px 14px;font-size:1rem;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font-family:inherit}
+  input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(75,59,209,.15)}
+  input.bad{border-color:var(--err)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:420px){.row{grid-template-columns:1fr}}
+  .err{color:var(--err);font-size:.8rem;margin-top:4px;min-height:1em}
+  .check{display:flex;align-items:center;gap:10px;margin:10px 0 0;font-weight:500;font-size:.9rem}
+  .check input{width:20px;height:20px;accent-color:var(--accent)}
+  button{width:100%;margin-top:22px;padding:15px;font-size:1.05rem;font-weight:700;border:0;border-radius:14px;background:var(--brand);color:#fff;cursor:pointer;font-family:inherit}
+  button:hover{background:var(--brand-d)}
+  button.sec2{background:#fff;color:var(--accent);border:2px solid var(--accent);margin-top:10px}
+  .note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:12px}
+  #done{display:none;background:var(--card);border-radius:20px;padding:22px;margin-top:14px;text-align:center;box-shadow:0 6px 24px rgba(75,59,209,.08)}
+  #done h2{color:var(--ok);margin:6px 0}
+  #preview{white-space:pre-wrap;text-align:left;background:#f6f3ff;border-radius:12px;padding:12px;font-size:.88rem;margin:12px 0}
+  .hp{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="nuri">🐿️</div>
+    <h1>¡Inscríbete al Curso de Vacaciones!</h1>
+    <p class="sub">V.I.V.A. Kids · Inglés + Italiano</p>
+    <div class="chips">
+      <span class="chip">👧👦 6 a 12 años</span>
+      <span class="chip">📅 Inicia 19 de octubre</span>
+      <span class="chip">🗓️ 6 semanas</span>
+    </div>
+  </header>
+
+  <form id="f" novalidate autocomplete="on">
+    <div class="sec">Datos del niño o niña</div>
+
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" autocomplete="off" placeholder="Nombres y apellidos">
+    <div class="err" id="e-nombre"></div>
+
+    <div class="row">
+      <div>
+        <label for="nacimiento">Fecha de nacimiento</label>
+        <input type="date" id="nacimiento" name="nacimiento">
+        <div class="err" id="e-nacimiento"></div>
+      </div>
+      <div>
+        <label for="edad">Edad <span class="hint">(años)</span></label>
+        <input type="number" id="edad" name="edad" min="1" max="99" inputmode="numeric" placeholder="Ej. 10">
+        <div class="err" id="e-edad"></div>
+      </div>
+    </div>
+
+    <div class="sec" style="margin-top:22px">Padre, madre o encargado</div>
+
+    <label for="encargado">Nombre completo del padre o encargado</label>
+    <input type="text" id="encargado" name="encargado" autocomplete="name" placeholder="Nombres y apellidos">
+    <div class="err" id="e-encargado"></div>
+
+    <label for="contacto">Número de contacto con WhatsApp</label>
+    <input type="tel" id="contacto" name="contacto" inputmode="tel" autocomplete="tel" placeholder="Ej. 5555 1234">
+    <div class="err" id="e-contacto"></div>
+
+    <label for="grupo">WhatsApp para agregar al grupo <span class="hint">(informes y avisos del curso)</span></label>
+    <input type="tel" id="grupo" name="grupo" inputmode="tel" placeholder="Ej. 5555 1234">
+    <label class="check"><input type="checkbox" id="mismo"> Es el mismo número de contacto</label>
+    <div class="err" id="e-grupo"></div>
+
+    <input class="hp" type="text" id="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <button type="submit">Enviar inscripción por WhatsApp 📲</button>
+    <p class="note">Al enviar se abrirá WhatsApp con tus datos listos para mandar a la academia.</p>
+  </form>
+
+  <section id="done">
+    <div style="font-size:48px">🎉</div>
+    <h2>¡Casi listo!</h2>
+    <p>Si WhatsApp no se abrió, copia este mensaje y envíalo a la academia:</p>
+    <div id="preview"></div>
+    <button type="button" id="copiar">Copiar mensaje</button>
+    <button type="button" class="sec2" id="otra">Inscribir a otro niño</button>
+  </section>
+</div>
+
+<script>
+/* ===== CONFIGURACIÓN =====
+   Número de WhatsApp de la academia que recibirá las inscripciones.
+   Formato internacional, solo dígitos, sin "+" ni espacios.
+   Guatemala = 502 + 8 dígitos. Ej: "50255551234" */
+var NUMERO_ACADEMIA = "50253745918";
+var CODIGO_PAIS = "502"; // se antepone a los números de 8 dígitos
+/* ======================== */
+
+var $ = function(id){return document.getElementById(id)};
+var mensaje = "";
+
+function soloDigitos(v){return (v||"").replace(/\D/g,"")}
+function validarTel(v){var d=soloDigitos(v);return d.length>=8 && d.length<=15}
+function setErr(id,msg){
+  $("e-"+id).textContent = msg||"";
+  $(id).classList.toggle("bad", !!msg);
+  return !msg;
+}
+function formatoTel(v){
+  var d=soloDigitos(v);
+  if(d.length===8) return "+"+CODIGO_PAIS+" "+d.slice(0,4)+" "+d.slice(4);
+  return d.length>8 ? "+"+d : d;
+}
+function calcEdad(iso){
+  var n=new Date(iso+"T00:00:00"), h=new Date();
+  var e=h.getFullYear()-n.getFullYear();
+  var m=h.getMonth()-n.getMonth();
+  if(m<0||(m===0&&h.getDate()<n.getDate())) e--;
+  return e;
+}
+function fechaBonita(iso){
+  var p=iso.split("-");
+  var meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  return parseInt(p[2],10)+" de "+meses[parseInt(p[1],10)-1]+" de "+p[0];
+}
+
+$("nacimiento").max = new Date().toISOString().split("T")[0];
+$("nacimiento").addEventListener("change",function(){
+  if(this.value){
+    var e=calcEdad(this.value);
+    if(e>=0 && e<100) $("edad").value=e;
+  }
+});
+$("mismo").addEventListener("change",function(){
+  if(this.checked){ $("grupo").value=$("contacto").value; $("grupo").readOnly=true; }
+  else { $("grupo").readOnly=false; }
+});
+$("contacto").addEventListener("input",function(){
+  if($("mismo").checked) $("grupo").value=this.value;
+});
+
+$("f").addEventListener("submit",function(ev){
+  ev.preventDefault();
+  if($("web").value) return; // anti-bot
+
+  var nombre=$("nombre").value.trim().replace(/\s+/g," ");
+  var nac=$("nacimiento").value;
+  var edad=parseInt($("edad").value,10);
+  var enc=$("encargado").value.trim().replace(/\s+/g," ");
+  var con=$("contacto").value.trim();
+  var gru=$("grupo").value.trim();
+
+  var ok=true;
+  ok = setErr("nombre", nombre.split(" ").length<2 ? "Escribe nombre y apellido" : "") && ok;
+  ok = setErr("nacimiento", !nac ? "Elige la fecha" : "") && ok;
+  ok = setErr("edad", (!edad||edad<1||edad>99) ? "Escribe la edad" : "") && ok;
+  ok = setErr("encargado", enc.split(" ").length<2 ? "Escribe nombre y apellido" : "") && ok;
+  ok = setErr("contacto", !validarTel(con) ? "Número no válido" : "") && ok;
+  ok = setErr("grupo", !validarTel(gru) ? "Número no válido" : "") && ok;
+  if(!ok){
+    var primero=document.querySelector("input.bad");
+    if(primero) primero.focus();
+    return;
+  }
+
+  mensaje =
+    "🐿️ *INSCRIPCIÓN – Curso de Vacaciones V.I.V.A. Kids (Inglés + Italiano)*\n\n"+
+    "👧 *Niño/a:* "+nombre+"\n"+
+    "🎂 *Fecha de nacimiento:* "+fechaBonita(nac)+"\n"+
+    "🔢 *Edad:* "+edad+" años\n\n"+
+    "👤 *Padre/encargado:* "+enc+"\n"+
+    "📞 *Contacto WhatsApp:* "+formatoTel(con)+"\n"+
+    "👥 *WhatsApp para el grupo:* "+formatoTel(gru);
+
+  $("preview").textContent=mensaje;
+  $("f").style.display="none";
+  $("done").style.display="block";
+  window.scrollTo(0,0);
+
+  if(NUMERO_ACADEMIA){
+    var url="https://wa.me/"+NUMERO_ACADEMIA+"?text="+encodeURIComponent(mensaje);
+    window.location.href=url;
+  }
+});
+
+$("copiar").addEventListener("click",function(){
+  var b=this;
+  function listo(){b.textContent="¡Copiado! ✅";setTimeout(function(){b.textContent="Copiar mensaje"},2000)}
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(mensaje).then(listo,function(){fallback()});
+  } else fallback();
+  function fallback(){
+    var t=document.createElement("textarea");t.value=mensaje;document.body.appendChild(t);
+    t.select();try{document.execCommand("copy");listo()}catch(e){}document.body.removeChild(t);
+  }
+});
+
+$("otra").addEventListener("click",function(){
+  $("f").reset();
+  $("grupo").readOnly=false;
+  $("done").style.display="none";
+  $("f").style.display="block";
+  window.scrollTo(0,0);
+});
+</script>
+</body>
+</html>
